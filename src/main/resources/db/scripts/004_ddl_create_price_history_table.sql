@@ -1,5 +1,4 @@
-create table price_history
-(
+create table price_history(
     id           serial primary key,
     before       bigint not null,
     after        bigint not null,

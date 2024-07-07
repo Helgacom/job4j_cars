@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Map;
@@ -34,6 +35,21 @@ public class CrudRepository {
             sq.executeUpdate();
         };
         run(command);
+    }
+
+    public boolean runBoolean(Function<Session, Boolean> command) {
+        return tx(command);
+    }
+
+    public boolean runBoolean(String query, Map<String, Object> args) {
+        Function<Session, Boolean> command = session -> {
+            var sq = session.createQuery(query);
+            for (Map.Entry<String, Object> arg : args.entrySet()) {
+                sq.setParameter(arg.getKey(), arg.getValue());
+            }
+            return sq.executeUpdate() > 0;
+        };
+        return tx(command);
     }
 
     public <T> Optional<T> optional(String query, Class<T> cl, Map<String, Object> args) {
