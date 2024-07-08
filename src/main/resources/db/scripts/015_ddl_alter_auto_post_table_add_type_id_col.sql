@@ -1,0 +1,1 @@
+ALTER TABLE auto_post ADD COLUMN type_id int REFERENCES types(id);
