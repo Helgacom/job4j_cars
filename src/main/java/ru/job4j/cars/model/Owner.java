@@ -3,6 +3,7 @@ package ru.job4j.cars.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,4 +18,7 @@ public class Owner {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private int id;
+
+    @OneToMany(mappedBy = "owner")
+    private Set<HistoryOwners> historyOwners;
 }
