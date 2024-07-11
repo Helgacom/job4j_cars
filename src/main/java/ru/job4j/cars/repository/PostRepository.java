@@ -6,6 +6,8 @@ import java.util.Collection;
 
 public interface PostRepository {
 
+    Post save(Post post);
+
     Collection<Post> findPostsByToday();
 
     Collection<Post> findAllWithPhotos();

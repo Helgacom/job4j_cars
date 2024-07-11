@@ -1,12 +1,14 @@
 package ru.job4j.cars.repository;
 
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Repository;
 import ru.job4j.cars.model.User;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+@Repository
 @AllArgsConstructor
 public class HQLUserRepository implements UserRepository {
 
@@ -53,10 +55,10 @@ public class HQLUserRepository implements UserRepository {
     }
 
     @Override
-    public Optional<User> findByLogin(String login) {
+    public Optional<User> findByLoginAndPassword(String login, String password) {
         return crudRepository.optional(
-                "from User where login = :fLogin", User.class,
-                Map.of("fLogin", login)
+                "FROM User WHERE login = :fLogin AND password = :fPassword", User.class,
+                Map.of("fLogin", login, "fPassword", password)
         );
     }
 }

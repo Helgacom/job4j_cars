@@ -47,6 +47,6 @@ public class Post {
 
     @ManyToOne
     @JoinColumn(name = "type_id")
-    private CarType type;
+    private Type type;
 }
 
