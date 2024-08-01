@@ -1,5 +1,5 @@
 create table files(
-    id   serial primary key,
+    id   bigserial primary key,
     name varchar not null,
     path varchar not null unique
 );

@@ -1,4 +1,4 @@
 CREATE TABLE engine(
-    id serial primary key,
+    id bigserial primary key,
     name varchar not null
 );

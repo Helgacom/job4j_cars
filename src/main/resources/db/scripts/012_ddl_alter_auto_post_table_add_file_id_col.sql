@@ -1,1 +1,1 @@
-ALTER TABLE auto_post ADD COLUMN file_id int REFERENCES files(id);
+ALTER TABLE auto_post ADD COLUMN file_id bigint REFERENCES files(id);

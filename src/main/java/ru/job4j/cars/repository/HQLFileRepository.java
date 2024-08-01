@@ -21,7 +21,7 @@ public class HQLFileRepository implements FileRepository {
     }
 
     @Override
-    public Optional<File> findById(int id) {
+    public Optional<File> findById(Long id) {
         return crudRepository.optional(
                 "FROM File WHERE id = :fId", File.class,
                 Map.of("fId", id));
@@ -33,7 +33,7 @@ public class HQLFileRepository implements FileRepository {
     }
 
     @Override
-    public boolean deleteById(int id) {
+    public boolean deleteById(Long id) {
         return crudRepository.runBoolean("DELETE File WHERE id = :fId",
                 Map.of("fId", id));
     }

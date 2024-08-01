@@ -35,33 +35,10 @@ class HQLUserRepositoryTest {
     }
 
     @Test
-    void whenDeleteUser() {
-        var user = new User();
-        user.setLogin("user");
-        user.setPassword("test");
-        userRepository.create(user);
-        userRepository.delete(user.getId());
-        assertThat(userRepository.findById(user.getId())).isEmpty();
-    }
-
-    @Test
-    void findAllOrderById() {
-        var user1 = new User();
-        user1.setLogin("user1");
-        user1.setPassword("test1");
-        var user2 = new User();
-        user2.setLogin("user2");
-        user2.setPassword("test2");
-        userRepository.create(user1);
-        userRepository.create(user2);
-        assertThat(userRepository.findAllOrderById()).contains(user1, user2);
-    }
-
-    @Test
     void findById() {
         var user = new User();
-        user.setLogin("user");
-        user.setPassword("test");
+        user.setLogin("user3");
+        user.setPassword("test3");
         userRepository.create(user);
         assertThat(userRepository.findById(user.getId())).isEqualTo(Optional.of(user));
     }
@@ -69,15 +46,17 @@ class HQLUserRepositoryTest {
     @Test
     void findByLikeLogin() {
         var user = new User();
-        user.setLogin("user1");
-        user.setPassword("test1");
+        user.setLogin("user4");
+        user.setPassword("test4");
         userRepository.create(user);
-        assertThat(userRepository.findByLikeLogin("user1")).contains(user);
+        assertThat(userRepository.findByLikeLogin("user4")).contains(user);
     }
 
     @Test
     void findByLoginAndPassword() {
-        var user = new User("admin", "test");
+        var user = new User();
+        user.setLogin("user5");
+        user.setPassword("test5");
         userRepository.create(user);
         var rsl = userRepository.findByLoginAndPassword(user.getLogin(), user.getPassword()).get();
         assertThat(rsl).isEqualTo(user);

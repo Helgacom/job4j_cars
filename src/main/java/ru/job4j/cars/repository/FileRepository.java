@@ -9,9 +9,9 @@ public interface FileRepository {
 
     File save(File file);
 
-    Optional<File> findById(int id);
+    Optional<File> findById(Long id);
 
     List<File> findAll();
 
-    boolean deleteById(int id);
+    boolean deleteById(Long id);
 }

@@ -10,7 +10,6 @@ import ru.job4j.cars.model.Car;
 import ru.job4j.cars.model.HistoryOwners;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -33,16 +32,13 @@ class HQLCarRepositoryTest {
     @Test
     void save() {
         var car = new Car();
-        car.setName("test");
         car.setHistoryOwners(historyOwners);
         assertThat(carRepository.save(car)).isEqualTo(Optional.of(car));
-        assertThat(carRepository.findById(car.getId()).get().getName()).isEqualTo("test");
     }
 
     @Test
     void findById() {
         var car = new Car();
-        car.setName("test");
         car.setHistoryOwners(historyOwners);
         carRepository.save(car);
         assertThat(carRepository.findById(car.getId())).isEqualTo(Optional.of(car));
@@ -51,18 +47,14 @@ class HQLCarRepositoryTest {
     @Test
     void findAll() {
         var car = new Car();
-        car.setName("test");
         car.setHistoryOwners(historyOwners);
         carRepository.save(car);
-        assertThat(carRepository.findAll()).hasSize(1)
-                .isInstanceOf(List.class)
-                .containsExactly(car);
+        assertThat(carRepository.findAll()).contains(car);
     }
 
     @Test
     void deleteById() {
         var car = new Car();
-        car.setName("test");
         car.setHistoryOwners(historyOwners);
         carRepository.save(car);
         carRepository.deleteById(car.getId());

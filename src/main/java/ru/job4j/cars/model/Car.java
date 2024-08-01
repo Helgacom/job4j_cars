@@ -17,11 +17,22 @@ public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private int id;
+    private Long id;
 
-    private String name;
+    @ManyToOne
+    @JoinColumn(name = "category_id", foreignKey = @ForeignKey(name = "CATEGORY_ID_FK"))
+    private Category category;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
+    @JoinColumn(name = "model_id", foreignKey = @ForeignKey(name = "MODEL_ID_FK"))
+    private CarModel model;
+
+    @ManyToOne
+    @JoinColumn(name = "type_id", foreignKey = @ForeignKey(name = "TYPE_ID_FK"))
+    private Type carType;
+
+
+    @ManyToOne
     @JoinColumn(name = "engine_id", foreignKey = @ForeignKey(name = "ENGINE_ID_FK"))
     private Engine engine;
 

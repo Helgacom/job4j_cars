@@ -2,16 +2,16 @@ package ru.job4j.cars.repository;
 
 import ru.job4j.cars.model.Engine;
 
-import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 public interface EngineRepository {
 
     Optional<Engine> save(Engine engine);
 
-    Optional<Engine> findById(int id);
+    Optional<Engine> findById(Long id);
 
-    Collection<Engine> findAll();
+    List<Engine> findAll();
 
-    boolean deleteById(int id);
+    boolean deleteById(Long id);
 }

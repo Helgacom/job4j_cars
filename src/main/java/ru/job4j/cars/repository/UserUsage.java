@@ -30,7 +30,7 @@ public class UserUsage {
             userRepository.update(user);
             userRepository.findById(user.getId())
                     .ifPresent(System.out::println);
-            userRepository.delete(user.getId());
+            userRepository.deleteById(user.getId());
             userRepository.findAllOrderById()
                     .forEach(System.out::println);
         } finally {

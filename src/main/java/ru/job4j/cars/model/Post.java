@@ -19,11 +19,13 @@ public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private int id;
+    private Long id;
 
     private String description;
 
     private LocalDateTime created = LocalDateTime.now();
+
+    private boolean done;
 
     @ManyToOne
     @JoinColumn(name = "auto_user_id")
@@ -41,12 +43,12 @@ public class Post {
     )
     private List<User> participates = new ArrayList<>();
 
+    @OneToOne
+    @JoinColumn(name = "car_id")
+    private Car car;
+
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "auto_post_id")
-    private List<File> fileList = new ArrayList<>();
-
-    @ManyToOne
-    @JoinColumn(name = "type_id")
-    private Type type;
+    private List<File> fileList;
 }
 

@@ -26,22 +26,22 @@ public class HQLUserRepository implements UserRepository {
     }
 
     @Override
-    public void delete(int userId) {
-        crudRepository.run(
-                "delete from User where id = :fId",
-                Map.of("fId", userId)
+    public boolean deleteById(Long id) {
+        return crudRepository.runBoolean(
+                "DELETE FROM User where id = :fId",
+                Map.of("fId", id)
         );
     }
 
     @Override
     public List<User> findAllOrderById() {
-        return crudRepository.query("from User order by id asc", User.class);
+        return crudRepository.query("FROM User ORDER BY id ASQ", User.class);
     }
 
     @Override
-    public Optional<User> findById(int userId) {
+    public Optional<User> findById(Long userId) {
         return crudRepository.optional(
-                "from User where id = :fId", User.class,
+                "FROM User WHERE id = :fId", User.class,
                 Map.of("fId", userId)
         );
     }
@@ -49,7 +49,7 @@ public class HQLUserRepository implements UserRepository {
     @Override
     public List<User> findByLikeLogin(String key) {
         return crudRepository.query(
-                "from User where login like :fKey", User.class,
+                "FROM User WHERE login LIKE :fKey", User.class,
                 Map.of("fKey", "%" + key + "%")
         );
     }

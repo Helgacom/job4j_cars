@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 import ru.job4j.cars.model.Engine;
 
-import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -27,19 +27,19 @@ public class HQLEngineRepository implements EngineRepository {
     }
 
     @Override
-    public Optional<Engine> findById(int id) {
+    public Optional<Engine> findById(Long id) {
         return crudRepository.optional("FROM Engine WHERE id = :fId", Engine.class,
                 Map.of("fId", id));
     }
 
     @Override
-    public Collection<Engine> findAll() {
+    public List<Engine> findAll() {
         return crudRepository.query("FROM Engine c ORDER BY c.id",
                 Engine.class);
     }
 
     @Override
-    public boolean deleteById(int id) {
+    public boolean deleteById(Long id) {
         return crudRepository.runBoolean("DELETE Engine WHERE id = :fId",
                 Map.of("fId", id));
     }

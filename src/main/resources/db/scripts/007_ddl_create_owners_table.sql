@@ -1,3 +1,3 @@
 CREATE TABLE owners(
-    id serial primary key
+    id bigserial primary key
 );

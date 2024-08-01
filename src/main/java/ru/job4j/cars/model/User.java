@@ -16,12 +16,12 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private int id;
+    private Long id;
+
     private String login;
     private String password;
 
-    public User(String login, String password) {
-        this.login = login;
-        this.password = password;
-    }
+    @Column(name = "user_zone")
+    private String timezone;
 }
+

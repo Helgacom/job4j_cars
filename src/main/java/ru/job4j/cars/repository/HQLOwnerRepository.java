@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 import ru.job4j.cars.model.Owner;
 
-import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -27,19 +27,19 @@ public class HQLOwnerRepository implements OwnerRepository {
     }
 
     @Override
-    public Optional<Owner> findById(int id) {
+    public Optional<Owner> findById(Long id) {
         return crudRepository.optional("FROM Owner WHERE id = :fId", Owner.class,
                 Map.of("fId", id));
     }
 
     @Override
-    public Collection<Owner> findAll() {
+    public List<Owner> findAll() {
         return crudRepository.query("FROM Owner c ORDER BY c.id",
                 Owner.class);
     }
 
     @Override
-    public boolean deleteById(int id) {
+    public boolean deleteById(Long id) {
         return crudRepository.runBoolean("DELETE Owner WHERE id = :fId",
                 Map.of("fId", id));
     }

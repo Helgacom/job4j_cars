@@ -1,4 +1,4 @@
 create table types(
-    id   serial primary key,
+    id   bigserial primary key,
     name varchar not null
 );
